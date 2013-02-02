@@ -1,16 +1,15 @@
-var mongo = require('mongodb');
-
-var Server = mongo.Server,
+var mongo = require('mongodb'),
     Db = mongo.Db,
-    BSON = mongo.BSONPure;
+    BSON = mongo.BSONPure,
+    db;
 
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('winedb', server, {w: 1});
-
-db.open(function(err, db) {
-    if(!err) {
+var dbURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/winedb';
+    
+Db.connect(dbURI, { server: {auto_reconnect: true}, db: {w: 1} }, function(err, _db) {
+    if (!err) {
+        db = _db;
         console.log("Connected to 'winedb' database");
-        db.collection('wines', {strict: true}, function(err, collection) {
+        _db.collection('wines', {strict: true}, function(err, collection) {
             if (err) {
                 console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -19,7 +18,9 @@ db.open(function(err, db) {
     } else {
         console.log('Could\'t connect to database : ' + err.message);
     }
+
 });
+
 
 exports.findById = function(req, res) {
     var id = req.params.id;
