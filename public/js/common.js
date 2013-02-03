@@ -4,6 +4,7 @@ require.config({
         'underscore': 'lib/underscore-min',
         'backbone': 'lib/backbone-min',
         'bootstrap': 'lib/bootstrap.min',
+        'text': 'lib/text',
         'utils': 'utils',
         'models': 'models/models',
         'paginator': 'views/paginator',
@@ -11,7 +12,12 @@ require.config({
         'home': 'views/home',
         'winelist': 'views/winelist',
         'winedetails': 'views/winedetails',
-        'about': 'views/about'
+        'about': 'views/about',
+        'homeview': '../tpl/HomeView.html',
+        'headerview': '../tpl/HeaderView.html',
+        'wineview': '../tpl/WineView.html',
+        'winelistitemview': '../tpl/WineListItemView.html',
+        'aboutview': '../tpl/AboutView.html'
     },
     shim: {
         'jquery': {
@@ -63,9 +69,14 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'bootstrap', 'utils', 'models', 'paginator', 'header', 'home', 'winelist', 'winedetails', 'about', 'main'], function($, _, Backbone){
-    utils.loadTemplate(['HomeView', 'HeaderView', 'WineView', 'WineListItemView', 'AboutView'], function() {
-        new AppRouter();
-        Backbone.history.start();
-    });
+require(['jquery', 'underscore', 'backbone', 'text!homeview', 'text!headerview', 'text!wineview', 'text!winelistitemview', 'text!aboutview', 'bootstrap', 'utils', 'models', 'paginator', 'header', 'home', 'winelist', 'winedetails', 'about', 'main'], function($, _, Backbone, HomeViewTpl, HeaderViewTpl, WineViewTpl, WineListItemViewTpl, AboutViewTpl){
+    HomeView.prototype.template = _.template(HomeViewTpl);
+    HeaderView.prototype.template = _.template(HeaderViewTpl);
+    WineView.prototype.template = _.template(WineViewTpl);
+    WineView.prototype.template = _.template(WineViewTpl);
+    WineListItemView.prototype.template = _.template(WineListItemViewTpl);
+    AboutView.prototype.template = _.template(AboutViewTpl);
+
+    new AppRouter();
+    Backbone.history.start();
 });
