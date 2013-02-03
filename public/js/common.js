@@ -70,6 +70,8 @@ require(['jquery', 'underscore', 'backbone', 'text!homeview', 'text!wineview', '
     WineListItemView.prototype.template = _.template(WineListItemViewTpl);
     AboutView.prototype.template = _.template(AboutViewTpl);
 
-    new AppRouter();
-    Backbone.history.start();
+    $(function(){
+        new AppRouter();
+        Backbone.history.start();
+    });
 });
