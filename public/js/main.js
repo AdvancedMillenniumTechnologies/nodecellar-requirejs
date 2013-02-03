@@ -19,41 +19,53 @@ var AppRouter = Backbone.Router.extend({
         }    
     },
     home: function (id) {
-        if (!this.homeView) {
-            this.homeView = new HomeView();
-        }
-        $('#content').html(this.homeView.el);
+        var _this = this;
+        require(['routes/home'], function(){
+            if (!_this.homeView) {
+                _this.homeView = new HomeView();
+            }
+            $('#content').html(_this.homeView.el);
+        });
     },
 
 	list: function(page) {
-        var p = page ? parseInt(page, 10) : 1;
-        var wineList = new WineCollection();
-        wineList.fetch({success: function(){
-            $("#content").html(new WineListView({model: wineList, page: p}).el);
-        }});
         this.selectMenuItem('home-menu');
+        require(['routes/list'], function(){
+            var p = page ? parseInt(page, 10) : 1;
+            var wineList = new WineCollection();
+            wineList.fetch({success: function(){
+                $("#content").html(new WineListView({model: wineList, page: p}).el);
+            }});
+        });
     },
 
     wineDetails: function (id) {
-        var wine = new Wine({_id: id});
-        wine.fetch({success: function(){
-            $("#content").html(new WineView({model: wine}).el);
-        }});
         this.selectMenuItem();
+        require(['routes/view'], function(){
+            var wine = new Wine({_id: id});
+            wine.fetch({success: function(){
+                $("#content").html(new WineView({model: wine}).el);
+            }});
+        });
     },
 
 	addWine: function() {
-        var wine = new Wine();
-        $('#content').html(new WineView({model: wine}).el);
         this.selectMenuItem('add-menu');
+        require(['routes/add'], function(){
+            var wine = new Wine();
+            $('#content').html(new WineView({model: wine}).el);
+        });
 	},
 
     about: function () {
-        if (!this.aboutView) {
-            this.aboutView = new AboutView();
-        }
-        $('#content').html(this.aboutView.el);
+        var _this = this;
         this.selectMenuItem('about-menu');
+        require(['routes/about'], function(){
+            if (!_this.aboutView) {
+                _this.aboutView = new AboutView();
+            }
+            $('#content').html(_this.aboutView.el);
+        });
     }
 
 });
