@@ -35,15 +35,11 @@ require.config({
         },
         'utils': {
             exports: 'utils'
-        },
-        'paginator': {
-            deps: ['backbone'],
-            exports: 'Paginator'
         }
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'approuter', 'bootstrap', 'utils', 'paginator'], function($, _, Backbone, AppRouter ){
+require(['jquery', 'underscore', 'backbone', 'approuter', 'bootstrap', 'utils'], function($, _, Backbone, AppRouter ){
     $(function(){
         window.app = new AppRouter();
         Backbone.history.start();
