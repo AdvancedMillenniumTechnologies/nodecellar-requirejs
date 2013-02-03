@@ -11,7 +11,7 @@ require.config({
         'home': 'views/home',
         'winelist': 'views/winelist',
         'winedetails': 'views/winedetails',
-        'about': 'views/about',
+        'about': 'views/about'
     },
     shim: {
         'jquery': {
