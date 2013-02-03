@@ -39,10 +39,6 @@ require.config({
         'paginator': {
             deps: ['backbone'],
             exports: 'Paginator'
-        },
-        'main': {
-            deps: ['backbone'],
-            exports: 'AppRouter'
         }
     }
 });
