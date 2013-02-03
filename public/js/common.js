@@ -8,13 +8,11 @@ require.config({
         'utils': 'utils',
         'models': 'models/models',
         'paginator': 'views/paginator',
-        'header': 'views/header',
         'home': 'views/home',
         'winelist': 'views/winelist',
         'winedetails': 'views/winedetails',
         'about': 'views/about',
         'homeview': '../tpl/HomeView.html',
-        'headerview': '../tpl/HeaderView.html',
         'wineview': '../tpl/WineView.html',
         'winelistitemview': '../tpl/WineListItemView.html',
         'aboutview': '../tpl/AboutView.html'
@@ -43,10 +41,6 @@ require.config({
             deps: ['backbone'],
             exports: 'Paginator'
         },
-        'header': {
-            deps: ['backbone'],
-            exports: 'HeaderView'
-        },
         'home': {
             deps: ['backbone'],
             exports: 'HomeView'
@@ -69,9 +63,8 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'text!homeview', 'text!headerview', 'text!wineview', 'text!winelistitemview', 'text!aboutview', 'bootstrap', 'utils', 'models', 'paginator', 'header', 'home', 'winelist', 'winedetails', 'about', 'main'], function($, _, Backbone, HomeViewTpl, HeaderViewTpl, WineViewTpl, WineListItemViewTpl, AboutViewTpl){
+require(['jquery', 'underscore', 'backbone', 'text!homeview', 'text!wineview', 'text!winelistitemview', 'text!aboutview', 'bootstrap', 'utils', 'models', 'paginator', 'home', 'winelist', 'winedetails', 'about', 'main'], function($, _, Backbone, HomeViewTpl, WineViewTpl, WineListItemViewTpl, AboutViewTpl){
     HomeView.prototype.template = _.template(HomeViewTpl);
-    HeaderView.prototype.template = _.template(HeaderViewTpl);
     WineView.prototype.template = _.template(WineViewTpl);
     WineView.prototype.template = _.template(WineViewTpl);
     WineListItemView.prototype.template = _.template(WineListItemViewTpl);

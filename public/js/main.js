@@ -10,16 +10,19 @@ var AppRouter = Backbone.Router.extend({
     },
 
     initialize: function () {
-        this.headerView = new HeaderView();
-        $('.header').html(this.headerView.el);
+        this.$navItems = $('.nav').find('li');
     },
-
+    selectMenuItem: function(menuItem){
+        this.$navItems.removeClass('active');
+        if (menuItem) {
+            this.$navItems.filter('.' + menuItem).addClass('active');
+        }    
+    },
     home: function (id) {
         if (!this.homeView) {
             this.homeView = new HomeView();
         }
         $('#content').html(this.homeView.el);
-        this.headerView.selectMenuItem('home-menu');
     },
 
 	list: function(page) {
@@ -28,7 +31,7 @@ var AppRouter = Backbone.Router.extend({
         wineList.fetch({success: function(){
             $("#content").html(new WineListView({model: wineList, page: p}).el);
         }});
-        this.headerView.selectMenuItem('home-menu');
+        this.selectMenuItem('home-menu');
     },
 
     wineDetails: function (id) {
@@ -36,13 +39,13 @@ var AppRouter = Backbone.Router.extend({
         wine.fetch({success: function(){
             $("#content").html(new WineView({model: wine}).el);
         }});
-        this.headerView.selectMenuItem();
+        this.selectMenuItem();
     },
 
 	addWine: function() {
         var wine = new Wine();
         $('#content').html(new WineView({model: wine}).el);
-        this.headerView.selectMenuItem('add-menu');
+        this.selectMenuItem('add-menu');
 	},
 
     about: function () {
@@ -50,7 +53,7 @@ var AppRouter = Backbone.Router.extend({
             this.aboutView = new AboutView();
         }
         $('#content').html(this.aboutView.el);
-        this.headerView.selectMenuItem('about-menu');
+        this.selectMenuItem('about-menu');
     }
 
 });
