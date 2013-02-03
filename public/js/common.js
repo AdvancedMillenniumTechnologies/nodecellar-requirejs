@@ -32,14 +32,11 @@ require.config({
         },
         'bootstrap': {
             deps: ['jquery']
-        },
-        'utils': {
-            exports: 'utils'
         }
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'approuter', 'bootstrap', 'utils'], function($, _, Backbone, AppRouter ){
+require(['jquery', 'underscore', 'backbone', 'approuter', 'bootstrap'], function($, _, Backbone, AppRouter){
     $(function(){
         window.app = new AppRouter();
         Backbone.history.start();
