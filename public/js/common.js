@@ -66,7 +66,6 @@ require.config({
 require(['jquery', 'underscore', 'backbone', 'text!homeview', 'text!wineview', 'text!winelistitemview', 'text!aboutview', 'bootstrap', 'utils', 'models', 'paginator', 'home', 'winelist', 'winedetails', 'about', 'main'], function($, _, Backbone, HomeViewTpl, WineViewTpl, WineListItemViewTpl, AboutViewTpl){
     HomeView.prototype.template = _.template(HomeViewTpl);
     WineView.prototype.template = _.template(WineViewTpl);
-    WineView.prototype.template = _.template(WineViewTpl);
     WineListItemView.prototype.template = _.template(WineListItemViewTpl);
     AboutView.prototype.template = _.template(AboutViewTpl);
 
