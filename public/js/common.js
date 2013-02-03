@@ -47,7 +47,7 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'bootstrap', 'utils', 'paginator', 'main'], function($, _, Backbone ){
+require(['jquery', 'underscore', 'backbone', 'main', 'bootstrap', 'utils', 'paginator'], function($, _, Backbone, AppRouter ){
     $(function(){
         window.app = new AppRouter();
         Backbone.history.start();
