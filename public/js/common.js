@@ -63,10 +63,9 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'text!wineview', 'text!winelistitemview', 'text!aboutview', 'bootstrap', 'utils', 'models', 'paginator', 'winelist', 'winedetails', 'about', 'main'], function($, _, Backbone, WineViewTpl, WineListItemViewTpl, AboutViewTpl){
+require(['jquery', 'underscore', 'backbone', 'text!wineview', 'text!winelistitemview', 'bootstrap', 'utils', 'models', 'paginator', 'winelist', 'winedetails', 'main'], function($, _, Backbone, WineViewTpl, WineListItemViewTpl){
     WineView.prototype.template = _.template(WineViewTpl);
     WineListItemView.prototype.template = _.template(WineListItemViewTpl);
-    AboutView.prototype.template = _.template(AboutViewTpl);
 
     $(function(){
         new AppRouter();
