@@ -1,12 +1,16 @@
-window.AboutView = Backbone.View.extend({
+// AboutView
+define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
 
-    initialize:function () {
-        this.render();
-    },
+    return Backbone.View.extend({
 
-    render:function () {
-        $(this.el).html(this.template());
-        return this;
-    }
+        initialize:function () {
+            this.render();
+        },
 
+        render:function () {
+            $(this.el).html(this.template());
+            return this;
+        }
+
+    });
 });

@@ -6,16 +6,18 @@ require.config({
         'bootstrap': 'lib/bootstrap.min',
         'text': 'lib/text',
         'utils': 'utils',
-        'models': 'models/models',
         'paginator': 'views/paginator',
-        'home': 'views/home',
-        'winelist': 'views/winelist',
-        'winedetails': 'views/winedetails',
-        'about': 'views/about',
-        'homeview': '../tpl/HomeView.html',
-        'wineview': '../tpl/WineView.html',
-        'winelistitemview': '../tpl/WineListItemView.html',
-        'aboutview': '../tpl/AboutView.html'
+        'WineModel': 'models/wine',
+        'WinesCollection': 'collections/wines',
+        'WineView': 'views/winedetails',
+        'WineViewTpl': '../tpl/WineView.html',
+        'WineListView': 'views/winelist',
+        'WineListItemView': 'views/winelistitem',
+        'WineListItemViewTpl': '../tpl/WineListItemView.html',
+        'HomeView': 'views/home',
+        'HomeViewTpl': '../tpl/HomeView.html',
+        'AboutView': 'views/about',
+        'AboutViewTpl': '../tpl/AboutView.html'
     },
     shim: {
         'jquery': {
@@ -34,27 +36,9 @@ require.config({
         'utils': {
             exports: 'utils'
         },
-        'models': {
-            deps: ['backbone']
-        },
         'paginator': {
             deps: ['backbone'],
             exports: 'Paginator'
-        },
-        'home': {
-            deps: ['backbone'],
-            exports: 'HomeView'
-        },
-        'winelist': {
-            deps: ['backbone']
-        },
-        'winedetails': {
-            deps: ['backbone', 'utils'],
-            exports: 'WineView'
-        },
-        'about': {
-            deps: ['backbone'],
-            exports: 'AboutView'
         },
         'main': {
             deps: ['backbone'],
