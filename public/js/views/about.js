@@ -1,7 +1,9 @@
 // AboutView
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone', 'text!AboutViewTpl'], function($, _, Backbone, AboutViewTpl){
 
     return Backbone.View.extend({
+
+        template: _.template(AboutViewTpl),
 
         initialize:function () {
             this.render();

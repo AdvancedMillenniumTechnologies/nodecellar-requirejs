@@ -1,5 +1,4 @@
-define(['jquery', 'underscore', 'HomeView', 'text!HomeViewTpl'], function($, _, HomeView, HomeViewTpl){
-    HomeView.prototype.template = _.template(HomeViewTpl);
+define(['jquery', 'underscore', 'HomeView'], function($, _, HomeView){
     var homeView = new HomeView();
     return function(){
         $('#content').html(homeView.el);

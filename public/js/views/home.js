@@ -1,7 +1,9 @@
 // HomeView
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone', 'text!HomeViewTpl'], function($, _, Backbone, HomeViewTpl){
 
     return Backbone.View.extend({
+
+        template: _.template(HomeViewTpl),
 
         initialize:function () {
             this.render();

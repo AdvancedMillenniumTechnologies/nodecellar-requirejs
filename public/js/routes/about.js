@@ -1,5 +1,4 @@
-define(['jquery', 'underscore', 'AboutView', 'text!AboutViewTpl'], function($, _, AboutView, AboutViewTpl){
-    AboutView.prototype.template = _.template(AboutViewTpl);
+define(['jquery', 'underscore', 'AboutView'], function($, _, AboutView){
     var aboutView = new AboutView();
     return function(){
         $('#content').html(aboutView.el);

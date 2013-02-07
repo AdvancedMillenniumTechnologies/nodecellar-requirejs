@@ -1,11 +1,13 @@
 // WineView
-define(['jquery', 'underscore', 'backbone', 'utils'], function($, _, Backbone, utils){
-    
+define(['jquery', 'underscore', 'backbone', 'utils', 'text!WineViewTpl'], function($, _, Backbone, utils, WineViewTpl){
+
     return Backbone.View.extend({
 
         initialize: function () {
             this.render();
         },
+
+        template: _.template(WineViewTpl),
 
         render: function () {
             $(this.el).html(this.template(this.model.toJSON()));

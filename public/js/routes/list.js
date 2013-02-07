@@ -1,5 +1,4 @@
-define(['jquery','underscore','text!WineListItemViewTpl', 'WinesCollection', 'WineListItemView', 'WineListView'], function($, _, WineListItemViewTpl, WineCollection, WineListItemView, WineListView){
-    WineListItemView.prototype.template = _.template(WineListItemViewTpl);    
+define(['jquery','underscore', 'WinesCollection', 'WineListItemView', 'WineListView'], function($, _, WineCollection, WineListItemView, WineListView){
     return function(page){
         var p = page ? parseInt(page, 10) : 1;
         var wineList = new WineCollection();

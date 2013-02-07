@@ -1,5 +1,4 @@
-define(['jquery', 'underscore', 'text!WineViewTpl', 'WineModel', 'WineView'], function($, _, WineViewTpl, Wine, WineView){
-    if (typeof WineView.prototype.template === "undefined") WineView.prototype.template = _.template(WineViewTpl);
+define(['jquery', 'underscore', 'WineModel', 'WineView'], function($, _, Wine, WineView){
     return function(id){
         var wine = new Wine({_id: id});
         wine.fetch({success: function(){
