@@ -8,8 +8,8 @@ var app = express();
 app.configure(function () {
     app.set('port', process.env.PORT || 3000);
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
-    app.use(express.bodyParser()),
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.bodyParser());
+    app.use(express.static(path.join(__dirname, (process.env.NODE_ENV === 'production') ? 'public-built' : 'public')));
 });
 
 app.get('/wines', wine.findAll);
