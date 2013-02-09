@@ -1,9 +1,14 @@
 define(['jquery','underscore', 'WinesCollection', 'WineListItemView', 'WineListView'], function($, _, WineCollection, WineListItemView, WineListView){
     return function(page){
-        var p = page ? parseInt(page, 10) : 1;
-        var wineList = new WineCollection();
+        var p = page ? parseInt(page, 10) : 1,
+            wineList = new WineCollection(),
+            defer = $.Deferred(),
+            renderPromise = defer.then(function(){
+                return new WineListView({model: wineList, page: p}).el;
+            });
         wineList.fetch({success: function(){
-            $("#content").html(new WineListView({model: wineList, page: p}).el);
+            defer.resolve();
         }});
+        return renderPromise;
     };
 });

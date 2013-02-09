@@ -1,8 +1,13 @@
 define(['jquery', 'underscore', 'WineModel', 'WineView'], function($, _, Wine, WineView){
     return function(id){
-        var wine = new Wine({_id: id});
+        var wine = new Wine({_id: id}),
+            defer = $.Deferred(),
+            renderPromise = defer.then(function(){
+                return new WineView({model: wine}).el;
+            });
         wine.fetch({success: function(){
-            $("#content").html(new WineView({model: wine}).el);
+            defer.resolve();
         }});
+        return renderPromise;
     };
 });

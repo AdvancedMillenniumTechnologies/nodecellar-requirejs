@@ -15,6 +15,11 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
         initialize: function () {
             this.$navItems = $('.nav').find('li');
         },
+
+        setContent: function(htmlContent){
+            $('#content').html(htmlContent);
+        },
+
         selectMenuItem: function(menuItem){
             this.$navItems.removeClass('active');
             if (menuItem) {
@@ -22,36 +27,45 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
             }    
         },
         home: function (id) {
-            require(['routes/home'], function(callback){
-                callback();
+            var self = this;
+            require(['routes/home'], function(htmlContent){
+                self.setContent(htmlContent);
             });
         },
 
         list: function(page) {
+            var self = this;
             this.selectMenuItem('home-menu');
             require(['routes/list'], function(callback){
-                callback(page);
+                callback(page).done(function(htmlContent){
+                    self.setContent(htmlContent);
+                });
             });
         },
 
         wineDetails: function (id) {
+            var self = this;
             this.selectMenuItem();
             require(['routes/view'], function(callback){
-                callback(id);
+                callback(id).done(function(htmlContent){
+                    self.setContent(htmlContent);
+                });
             });
         },
 
         addWine: function() {
+            var self = this;
             this.selectMenuItem('add-menu');
-            require(['routes/add'], function(callback){
-                callback();
+            require(['routes/add'], function(htmlContent){
+                self.setContent(htmlContent);
             });
         },
 
         about: function () {
+            var self = this;
             this.selectMenuItem('about-menu');
-            require(['routes/about'], function(callback){
-                callback();
+            require(['routes/about'], function(htmlContent){
+                self.setContent(htmlContent);
             });
         }
 
