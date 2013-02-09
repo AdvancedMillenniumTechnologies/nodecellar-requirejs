@@ -46,8 +46,8 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
         wineDetails: function (id) {
             var self = this;
             this.selectMenuItem();
-            require(['routes/view'], function(callback){
-                callback(id).done(function(htmlContent){
+            require(['routes/addview'], function(av){
+                av.initView(id).done(function(htmlContent){
                     self.setContent(htmlContent);
                 });
             });
@@ -56,7 +56,8 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
         addWine: function() {
             var self = this;
             this.selectMenuItem('add-menu');
-            require(['routes/add'], function(htmlContent){
+            require(['routes/addview'], function(av){
+                var htmlContent = av.initAdd();
                 self.setContent(htmlContent);
             });
         },
