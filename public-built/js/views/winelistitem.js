@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","text!WineListItemViewTpl"],function(e,t,n,r){return n.View.extend({template:t.template(r),tagName:"li",initialize:function(){this.model.bind("change",this.render,this),this.model.bind("destroy",this.close,this)},render:function(){return e(this.el).html(this.template(this.model.toJSON())),this}})});

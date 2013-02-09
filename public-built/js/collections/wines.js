@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","WineModel"],function(e,t,n,r){return n.Collection.extend({model:r,url:"/wines"})});
