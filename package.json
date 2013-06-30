@@ -1,8 +1,11 @@
 {
-  "name": "wine-cellar",
-  "description": "Wine Cellar Application",
+  "name": "wine-cellar-requirejs",
+  "description": "Wine Cellar Application Redux",
   "version": "0.0.1",
   "private": true,
+  "scripts" : {
+    "start": "node server"
+  },
   "dependencies": {
     "express": "3.x",
     "mongodb": "~1.2.11"
