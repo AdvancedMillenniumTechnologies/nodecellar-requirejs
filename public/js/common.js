@@ -4,6 +4,7 @@ require.config({
         'underscore': 'lib/underscore-min',
         'backbone': 'lib/backbone-min',
         'bootstrap': 'lib/bootstrap.min',
+        'validation': 'lib/backbone-validation-amd-min',
         'text': 'lib/text',
         'utils': 'utils',
         'paginator': 'views/paginator',
@@ -17,7 +18,15 @@ require.config({
         'HomeView': 'views/home',
         'HomeViewTpl': '../tpl/HomeView.html',
         'AboutView': 'views/about',
-        'AboutViewTpl': '../tpl/AboutView.html'
+        'AboutViewTpl': '../tpl/AboutView.html',
+
+        'UserModel': 'models/user',
+        'UserAddView': 'views/userAddView',
+        'UserAddTpl': '../tpl/UserAdd.html',
+
+        'UserAuthModel': 'models/userAuth',
+        'UserLoginView': 'views/UserLoginView',
+        'UserLoginTpl': '../tpl/UserLogin.html'
     },
     shim: {
         'jquery': {

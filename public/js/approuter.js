@@ -1,43 +1,45 @@
 // AppRouter
-define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
+define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
 
     return Backbone.Router.extend({
 
         routes: {
-            ""                  : "home",
-            "wines"	: "list",
-            "wines/page/:page"	: "list",
-            "wines/add"         : "addWine",
-            "wines/:id"         : "wineDetails",
-            "about"             : "about"
+            "": "home",
+            "wines": "list",
+            "wines/page/:page": "list",
+            "wines/add": "addWine",
+            "wines/:id": "wineDetails",
+            "about": "about",
+            "users/add": "addUser",
+            "users/login": "login"
         },
 
         initialize: function () {
             this.$navItems = $('.nav').find('li');
         },
 
-        setContent: function(htmlContent){
+        setContent: function (htmlContent) {
             $('#content').html(htmlContent);
         },
 
-        selectMenuItem: function(menuItem){
+        selectMenuItem: function (menuItem) {
             this.$navItems.removeClass('active');
             if (menuItem) {
                 this.$navItems.filter('.' + menuItem).addClass('active');
-            }    
+            }
         },
         home: function (id) {
             var self = this;
-            require(['routes/home'], function(htmlContent){
+            require(['routes/home'], function (htmlContent) {
                 self.setContent(htmlContent);
             });
         },
 
-        list: function(page) {
+        list: function (page) {
             var self = this;
             this.selectMenuItem('home-menu');
-            require(['routes/list'], function(callback){
-                callback(page).done(function(htmlContent){
+            require(['routes/list'], function (callback) {
+                callback(page).done(function (htmlContent) {
                     self.setContent(htmlContent);
                 });
             });
@@ -46,17 +48,17 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
         wineDetails: function (id) {
             var self = this;
             this.selectMenuItem();
-            require(['routes/addview'], function(av){
-                av.initView(id).done(function(htmlContent){
+            require(['routes/addview'], function (av) {
+                av.initView(id).done(function (htmlContent) {
                     self.setContent(htmlContent);
                 });
             });
         },
 
-        addWine: function() {
+        addWine: function () {
             var self = this;
             this.selectMenuItem('add-menu');
-            require(['routes/addview'], function(av){
+            require(['routes/addview'], function (av) {
                 var htmlContent = av.initAdd();
                 self.setContent(htmlContent);
             });
@@ -65,11 +67,25 @@ define(['jquery', 'underscore', 'backbone'], function($, _, Backbone){
         about: function () {
             var self = this;
             this.selectMenuItem('about-menu');
-            require(['routes/about'], function(htmlContent){
+            require(['routes/about'], function (htmlContent) {
+                self.setContent(htmlContent);
+            });
+        },
+
+        addUser: function () {
+            var self = this;
+            require(['routes/users'], function (av) {
+                var htmlContent = av.initAdd();
+                self.setContent(htmlContent);
+            });
+        },
+
+        login: function () {
+            var self = this;
+            require(['routes/userLogin'], function (htmlContent) {
                 self.setContent(htmlContent);
             });
         }
-
     });
 
 });
